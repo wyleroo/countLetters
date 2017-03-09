@@ -35,6 +35,7 @@ function calculateSalesTax(salesData, taxRates) {
   for (var i = 0; i < companySalesData.length ; i++) {
 
     var branchSales = companySalesData[i].sales;
+    //console.log(branchSales);
     var branchTotal = branchSales.reduce(getSum);
     var branchTax = branchTotal * salesTaxRates[companySalesData[i].province];
 
@@ -45,16 +46,17 @@ function calculateSalesTax(salesData, taxRates) {
     }
 
     var currentName = companySalesData[i].name;
+    console.log(currentName);
     if (printMe[currentName]) {
-      var currentTotal = printMe[currentName.totalSales];
-      var currentTax = printMe[currentName.totalTaxes];
-      currentTotal + branchTotal;
-      currentTax + branchTax;
+      console.log('Hello');
+      printMe[currentName].totalSales += branchTotal;
+      printMe[currentName].totalTaxes += branchTax;
     } else {
+      console.log('Goodbye');
       printMe[currentName] = {totalSales: branchTotal, totalTaxes: branchTax};
     }
 
-    console.log(printMe[currentName]);
+    //console.log(printMe[currentName]);
 
   }
   return printMe;
